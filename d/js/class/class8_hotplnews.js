@@ -1,0 +1,1 @@
+document.write("<li><a href=\"/one/2012-02-24/8.html\" title=\"test1\">test1</a></li><li><a href=\"/one/2012-02-24/10.html\" title=\"test1\">test1</a></li><li><a href=\"/one/2012-02-24/11.html\" title=\"test1\">test1</a></li>");

@@ -1,0 +1,19 @@
+/**³õÊ¼»¯ä¯ÀÀÆ÷
+*/
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, fieldset, input { padding: 0; margin: 0;}
+
+#loadnews {
+	width:650px;
+	height:280px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+li {
+	line-height: 28px;
+	padding: 0px 10px;
+	font-size: 13px;
+	list-style-type:none;
+}
+.bg#CCC {
+	background: #CCC;
+}

@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>上金所</title>
+<style>
+.g {
+	color:green;
+}
+.h {
+	color:red;
+}
+body, td, th {
+	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<script src="js/jquery-1.2.6.js" type="text/javascript"></script>
+<script src="js/jquery-jtemplates.js" type="text/javascript"></script>
+<script src="js/Ajax.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    ajax_start();
+})
+
+function ajax_start()
+{
+	Start("dong/data.php?dong=1",33547,9000);
+}
+
+function ApplyTemplate(data)
+{
+  for(var i=0;i<data.data.length;i++)
+  {
+    data.data[i].newPrice=data.data[i].newPrice.replace(/(f\d+\.?(\d+)?)|(r\d+\.?(\d+)?)/,"<span class=g>$1</span><span class=h>$3</span>").replace(/[f|r]/,"");
+    data.data[i].amnt=data.data[i].amnt.replace(/(f\d+\.?(\d+)?)|(r\d+\.?(\d+)?)/,"<span class=g>$1</span><span class=h>$3</span>").replace(/[f|r]/,"");
+    data.data[i].zhang=data.data[i].zhang.replace(/(f-\d+\.?(\d+)?)|(r\d+\.?(\d+)?)/,"<span class=g>$1</span><span class=h>$3</span>").replace(/[f|r]/,"");
+   }
+   $('#result').setTemplateElement('template', null, {filter_data: false});
+   $('#result').processTemplate(data);
+}
+
+</script>
+</head>
+<body marginwidth="0" marginheight="0">
+<textarea id="template" style="display:none">&lt;table cellpadding="1" cellspacing="1" bgcolor="#e9e5e2" border="0" width="645px"&gt;
+          &lt;thead&gt;
+            &lt;tr align=center style="background:#EBF2FA;height:25px"&gt;
+              &lt;th style="font-size:12px;width:9%"&gt;品种&lt;/th&gt;
+              &lt;th style="font-size:12px;width:9%"&gt;最新价&lt;/th&gt;
+              &lt;th style="font-size:12px;width:9%"&gt;开盘价&lt;/th&gt;
+              &lt;th style="font-size:12px;width:9%"&gt;收盘价&lt;/th&gt;
+              &lt;th style="font-size:12px;width:8%"&gt;昨收盘价&lt;/th&gt;
+              &lt;th style="font-size:12px;width:9%"&gt;最高价&lt;/th&gt;
+              &lt;th style="font-size:12px;width:9%"&gt;最低价&lt;/th&gt;
+              &lt;th style="font-size:12px;width:10%"&gt;加权平均价&lt;/th&gt;
+              &lt;th style="font-size:12px;width:9%"&gt;交易量&lt;/th&gt;
+              &lt;th style="font-size:12px;width:8%"&gt;涨跌&lt;/th&gt;
+              &lt;th style="font-size:12px;width:10%"&gt;交易时间&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+{#foreach $T.data as record}
+            &lt;tr align=center  bgcolor="{#cycle values=['#ffffff','#EBF2FA']}" style="font-size:11px;height:23px"&gt;
+              &lt;td&gt;{$T.record.code}&lt;/td&gt;
+              &lt;td&gt;{$T.record.newPrice}&lt;/td&gt;
+              &lt;td&gt;{$T.record.open}&lt;/td&gt;
+              &lt;td&gt;{$T.record.close}&lt;/td&gt;
+              &lt;td&gt;{$T.record.yclose}&lt;/td&gt;
+              &lt;td&gt;{$T.record.hight}&lt;/td&gt;
+              &lt;td&gt;{$T.record.low}&lt;/td&gt;
+              &lt;td&gt;{$T.record.arg}&lt;/td&gt;
+              &lt;td&gt;{$T.record.amnt}&lt;/td&gt;
+              &lt;td&gt;{$T.record.zhang}&lt;/td&gt;
+              &lt;td style="color:#666666"&gt;{$T.record.date}&lt;/td&gt;
+            &lt;/tr&gt;
+{#/for}
+          &lt;/tbody&gt;
+&lt;/table&gt;
+</textarea>
+<div id="result" class="jTemplatesTest">
+  实时行情,数椐加载中......
+</div>
+</body>
+</html>

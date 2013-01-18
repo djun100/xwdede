@@ -1,0 +1,1 @@
+document.write("<li><a href=\"/case/pingce/2012-12-28/92.html\" title=\"贵金属投资历史评测\">贵金属投资历史评测</a></li><li><a href=\"/case/pingce/2012-12-28/93.html\" title=\"渤海商品投资历史评测\">渤海商品投资历史评测</a></li>");

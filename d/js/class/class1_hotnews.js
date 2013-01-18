@@ -1,0 +1,1 @@
+document.write("<li><a href=\"/about/index.html\" title=\"上海黄金交易所\">上海黄金交易所</a></li><li><a href=\"/about/2.html\" title=\"黄金白银T+D开户指南\">黄金白银T+D开户指南</a></li><li><a href=\"/about/3.html\" title=\"渤海商品交易所\">渤海商品交易所</a></li><li><a href=\"/about/4.html\" title=\"现货商品投资指南\">现货商品投资指南</a></li><li><a href=\"/about/5.html\" title=\"现货商品开户指南\">现货商品开户指南</a></li>");

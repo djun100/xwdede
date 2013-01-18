@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="css/goods.css2" />
+<title>大宗商品</title>
+
+<style>
+.hq_trnew {
+background-color:#CCC; font-weight:bold; color:#000; font-size:12px; line-height:25px;text-align:center;
+}
+#zhiding {
+width:100%;position:fixed; top:0;_position:relative; z-index:100; _top:expression(offsetParent.scrollTop+0);padding-left:3px; padding-right:2px; margin-right:20px;
+}
+.hq_td_bh {
+ text-align:center;	font-size:12px;height:23px;
+}
+.odd{
+	background-color:#CCC;
+}
+.even{
+	
+}
+</style>
+
+</head>
+
+<body>
+<div id="zhiding" style="width:628px;position:fixed; top:0;_position:relative; z-index:100; _top:expression(offsetParent.scrollTop+0);padding-left:3px; padding-right:2px; padding:0px;;">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#e9e5e2" style="margin-right:20px;">
+  <tr>
+	<td width="10%" class="hq_tr hq_trnew">品种</td>
+	<td width="10%" class="hq_tr hq_trnew">最新价</td>
+	<td width="10%" class="hq_tr hq_trnew" style="font-size:6px;">最新含税</td>
+	<td width="10%" class="hq_tr hq_trnew">最高价</td>
+	<td width="10%" class="hq_tr hq_trnew">最低价</td>
+	<td width="10%" class="hq_tr hq_trnew">平均价</td>
+	<td width="10%" class="hq_tr hq_trnew" style="font-size:6px;">平均含税</td>
+	<td width="10%" class="hq_tr hq_trnew">涨跌</td>
+	<td width="10%" class="hq_tr hq_trnew">成交量</td>
+	<!--<td width="15%" class="hq_tr">成交金额</td>-->
+	<td width="10%" class="hq_tr hq_trnew">订货量</td>
+  </tr>
+</table>
+</div>
+<div id="demohq" style="background-color:#e9e5e2; width:628px;overflow:hidden; padding-left:3px; padding-right:2px; padding-top:20px!important; padding-top:0px; padding:0px; height:280px; overflow-y:scroll;">
+	<div id="demohq1">
+    
+    </div>
+	<div align="center" id="demohq2"></div>
+</div>
+<script type="text/javascript">
+setInterval('ajaxLoad()',3000);
+function ajaxLoad(){
+	url = 'dong/goods.php';
+	var xmlHttp = false;
+	xmlHttp = createHttpRequest();
+	xmlHttp.onreadystatechange = function(){
+		if(xmlHttp.readyState == 4){
+			if(xmlHttp.status == 200){
+				var strhtml = xmlHttp.responseText;
+				//if(strhtml = '') location.reload();
+				document.getElementById('demohq1').innerHTML = strhtml;
+				//表格样式 
+				table_style();
+			}
+		}
+	}
+	xmlHttp.open('POST',url,true);
+	//xmlHttp.setRequestHeader('Content-type','html/text; charset = utf-8');
+	xmlHttp.send(null);
+}
+	
+
+function createHttpRequest(){
+	try{
+		xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+	}catch(e){
+		try{
+			xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");	
+		}catch(e2){
+			xmlHttp = false;
+		}
+	}
+	if(!xmlHttp && typeof XMLHttpRequest != 'undefined'){
+		xmlHttp = new XMLHttpRequest();
+		if(xmlHttp.overrideMimeType){
+			xmlHttp.overrideMimeType('text/xml');
+		}
+	}
+	return xmlHttp;
+}
+
+function table_style(){
+	var table = document.getElementById('demohq1').getElementsByTagName('table');
+	var odd = false;
+	var rows = table[0].getElementsByTagName('tr');
+	for(var j = 0; j<rows.length;j++){
+			if(odd == true){
+				addClass(rows[j],'odd');
+				odd = false;
+			}else{
+				addClass(rows[j],'even');
+				odd = true;
+			}
+	}
+}
+function addClass(target,classValue)
+{
+	var pattern = new RegExp("(^| )" + classValue + "( |$)");
+	if (!pattern.test(target.className))
+	{
+		 if(target.className ==" ")
+		 {
+		  target.className = classValue;
+		 }
+		 else
+		 {
+		  target.className = " " + classValue;
+		 }
+	}
+	return true;
+}
+
+</script>
+</body>
+</html>

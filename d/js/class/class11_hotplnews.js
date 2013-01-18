@@ -1,0 +1,1 @@
+document.write("<li><a href=\"/jinriguanzhu/2012-11-14/41.html\" title=\"test\">test</a></li>");
